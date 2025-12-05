@@ -7,7 +7,7 @@ public class Address {
     Province province; // enum, contains abbriviations of all provinces in Canada
     String postalCode;
 
-    public static boolean isPostalCodeValid(String postalCode) {
+    private static boolean isPostalCodeValid(String postalCode) {
         if (postalCode == null) {
             return false;
         }
