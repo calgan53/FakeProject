@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Student {
-    private String studentId;
-    private String studentName;
-    private Gender gender;
-    private Address address;
-    private Department department;
-    private ArrayList<Course> registeredCourses;
+    String studentId;
+    String studentName;
+    Gender gender;
+    Address address;
+    Department department;
+    ArrayList<Course> registeredCourses;
 
     private static int nextId = 1;
 
@@ -32,7 +32,7 @@ public class Student {
         course.getRegisteredStudents().add(this);
 
         for (int i = 0; i < course.getAssignments().size(); i++) {
-            course.getStudentScores(this).add(null);
+            course.calcStudentAverage();
         }
 
         return true;
@@ -45,7 +45,7 @@ public class Student {
 
         registeredCourses.remove(course);
         course.getRegisteredStudents().remove(this);
-        course.getAllStudentScores().remove(this);
+        course.calcStudentAverage();
 
         return true;
     }

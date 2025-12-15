@@ -10,7 +10,7 @@ public class Assignment {
     ArrayList<Integer> scores;
     static int nextId = 1;
 
-    public Assignment(String assignmentName, double weight, ArrayList<Integer> scores) {
+    public Assignment(String assignmentName, double weight) {
         this.assignmentId = String.valueOf(nextId++);
         this.assignmentName = assignmentName;
         this.weight = weight;
