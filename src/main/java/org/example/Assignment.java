@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Assignment {
 
-    private String assignmentId;
-    private String assignmentName;
-    private double weight;
+    String assignmentId;
+    String assignmentName;
+    double weight;
     ArrayList<Integer> scores;
     static int nextId = 1;
 
