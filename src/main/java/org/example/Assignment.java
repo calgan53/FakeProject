@@ -17,38 +17,45 @@ public class Assignment {
         this.scores = scores;
     }
 
-    public double calcAssignmentAvg() {
-        if (scores.isEmpty()) return 0.0;
+    public double generateRandomScore(int numberOfStudents) {
+        Random rand = new Random();
+        scores.clear();
 
-        double sum = 0;
-        for (Integer s : scores) {
-            if (s != null) sum += s;
-        }
-        return sum / scores.size();
-    }
+        for (int i = 0; i < numberOfStudents; i++) {
 
-    public void generateRandomScore() {
-        Random r = new Random();
-
-        for (int i = 0; i < scores.size(); i++) {
-
-            int roll = r.nextInt(11);
-
+            int randomBucket = rand.nextInt(11);
             int score;
-            if (roll == 0) {
-                score = r.nextInt(61);
-            } else if (roll == 1 || roll == 2) {
-                score = 60 + r.nextInt(11);
-            } else if (roll == 3 || roll == 4) {
-                score = 70 + r.nextInt(11);
-            } else if (roll >= 5 && roll <= 8) {
-                score = 80 + r.nextInt(11);
+
+            if (randomBucket == 0) {
+                score = rand.nextInt(61);           // [0, 60]
+            } else if (randomBucket <= 2) {
+                score = 60 + rand.nextInt(11);     // [60, 70]
+            } else if (randomBucket <= 4) {
+                score = 70 + rand.nextInt(11);     // [70, 80]
+            } else if (randomBucket <= 8) {
+                score = 80 + rand.nextInt(11);     // [80, 90]
             } else {
-                score = 90 + r.nextInt(11);
+                score = 90 + rand.nextInt(11);     // [90, 100]
             }
 
-            scores.set(i, score);
+            scores.add(score);
         }
+
+        return calcAssignmentAvg();
+    }
+
+
+    public double calcAssignmentAvg() {
+        if (scores.isEmpty()) {
+            return 0.0;
+        }
+
+        int sum = 0;
+        for (int score : scores) {
+            sum += score;
+        }
+
+        return (double) sum / scores.size();
     }
 
     @Override
